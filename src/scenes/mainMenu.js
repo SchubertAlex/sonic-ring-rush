@@ -1,4 +1,5 @@
 import k from "../kaplayContext";
+import makeSonic from "../entities/sonic";
 
 function mainMenu() {
   if (!k.getData("best-score")) k.setData("best-score", 0);
@@ -20,6 +21,8 @@ function mainMenu() {
     k.add([k.sprite("platforms"), k.pos(0, 450), k.scale(4)]),
     k.add([k.sprite("platforms"), k.pos(platformWidth * 4, 450), k.scale(4)]),
   ];
+
+  makeSonic(k.vec2(200, 745));
 
   k.onUpdate(() => {
     if (bgPieces[1].pos.x < 0) {
