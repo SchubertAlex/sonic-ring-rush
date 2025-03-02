@@ -22,11 +22,35 @@ function mainMenu() {
     k.add([k.sprite("platforms"), k.pos(platformWidth * 4, 450), k.scale(4)]),
   ];
 
+  k.add([
+    k.text("SONIC INFINITE RUNNER", { font: "mania", size: 96 }),
+    k.pos(k.center().x, 200),
+    k.anchor("center"),
+  ]);
+
+  k.add([
+    k.text("...created by Alex Schubert.", {
+      font: "mania",
+      size: 30,
+    }),
+    k.anchor("center"),
+    k.pos(k.center().x, k.center().y - 285),
+  ]);
+
+  k.add([
+    k.text("Press Space/Click to play...", {
+      font: "mania",
+      size: 42,
+    }),
+    k.anchor("center"),
+    k.pos(k.center().x, k.center().y - 410),
+  ]);
+
   makeSonic(k.vec2(200, 745));
 
   k.onUpdate(() => {
     if (bgPieces[1].pos.x < 0) {
-      bgPieces[0].pos.moveTo(bgPieces[1].pos.x + bgPieceWidth * 2, 0);
+      bgPieces[0].moveTo(bgPieces[1].pos.x + bgPieceWidth * 2, 0);
       bgPieces.push(bgPieces.shift());
     }
 
