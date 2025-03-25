@@ -1,4 +1,5 @@
 import k from "../kaplayContext";
+import makeSonic from "../entities/sonic";
 
 function game() {
   k.setGravity(3100);
@@ -19,10 +20,20 @@ function game() {
     k.add([k.sprite("platforms"), k.pos(platformWidth * 4, 450), k.scale(4)]),
   ];
 
+  const sonic = makeSonic(k.vec2(200, 745));
+
   let gameSpeed = 300;
   k.loop(1, () => {
     gameSpeed += 37.5;
   });
+
+  k.add([
+    k.rect(1920, 300),
+    k.opacity(0),
+    k.area(),
+    k.pos(0, 832),
+    k.body({ isStatic: true }),
+  ]);
 
   k.onUpdate(() => {
     if (bgPieces[1].pos.x < 0) {
