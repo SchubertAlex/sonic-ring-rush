@@ -1,10 +1,7 @@
 import k from "../kaplayContext";
-import makeSonic from "../entities/sonic";
 
-function mainMenu() {
-  if (!k.getData("best-score")) k.setData("best-score", 0);
-  k.onButtonPress("jump", () => k.go("game"));
-
+function game() {
+  k.setGravity(3100);
   const bgPieceWidth = 1920;
   const bgPieces = [
     k.add([k.sprite("chemical-bg"), k.pos(0, 0), k.scale(2), k.opacity(0.8)]),
@@ -22,22 +19,10 @@ function mainMenu() {
     k.add([k.sprite("platforms"), k.pos(platformWidth * 4, 450), k.scale(4)]),
   ];
 
-  k.add([
-    k.text("SONIC INFINITE RUNNER", { font: "mania", size: 96 }),
-    k.pos(k.center().x, 200),
-    k.anchor("center"),
-  ]);
-
-  k.add([
-    k.text("by Alex Schubert.", {
-      font: "mania",
-      size: 30,
-    }),
-    k.anchor("center"),
-    k.pos(k.center().x, k.center().y - 285),
-  ]);
-
-  makeSonic(k.vec2(200, 745));
+  let gameSpeed = 300;
+  k.loop(1, () => {
+    gameSpeed += 37.5;
+  });
 
   k.onUpdate(() => {
     if (bgPieces[1].pos.x < 0) {
@@ -53,9 +38,9 @@ function mainMenu() {
       platforms.push(platforms.shift());
     }
 
-    platforms[0].move(-4000, 0);
+    platforms[0].move(-gameSpeed, 0);
     platforms[1].moveTo(platforms[0].pos.x + platformWidth * 4, 450);
   });
 }
 
-export default mainMenu;
+export default game;
