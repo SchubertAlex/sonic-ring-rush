@@ -21,10 +21,12 @@ function game() {
   ];
 
   const sonic = makeSonic(k.vec2(200, 745));
+  sonic.setControls();
+  sonic.setEvents();
 
   let gameSpeed = 300;
   k.loop(1, () => {
-    gameSpeed += 37.5;
+    gameSpeed += 50;
   });
 
   k.add([
@@ -51,6 +53,9 @@ function game() {
 
     platforms[0].move(-gameSpeed, 0);
     platforms[1].moveTo(platforms[0].pos.x + platformWidth * 4, 450);
+
+    bgPieces[0].moveTo(bgPieces[0].pos.x, -sonic.pos.y / 10 - 50);
+    bgPieces[1].moveTo(bgPieces[1].pos.x, -sonic.pos.y / 10 - 50);
   });
 }
 
