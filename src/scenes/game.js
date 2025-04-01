@@ -26,14 +26,14 @@ function game() {
   sonic.setEvents();
   sonic.onCollide("enemy", (enemy) => {
     if (!sonic.isGrounded()) {
-      k.play("destroy", { volume: 0.5 });
-      k.play("hyper-ring", { volume: 0.5 });
+      k.play("destroy", { volume: 0.1 });
+      k.play("hyper-ring", { volume: 0.1 });
       k.destroy(enemy);
       sonic.play("jump");
       sonic.jump();
       return;
     }
-    k.play("hurt", { volume: 0.5 });
+    k.play("hurt", { volume: 0.3 });
     k.go("game-over");
   });
 

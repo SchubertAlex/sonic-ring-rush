@@ -1,3 +1,3 @@
-function gameover() {}
+function gameOver() {}
 
-export default gameover;
+export default gameOver;
