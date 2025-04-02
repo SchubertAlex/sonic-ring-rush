@@ -22,6 +22,9 @@ function game() {
     k.add([k.sprite("platforms"), k.pos(platformWidth * 4, 450), k.scale(4)]),
   ];
 
+  let score = 0;
+  let scoreMultiplier = 0;
+
   const sonic = makeSonic(k.vec2(200, 745));
   sonic.setControls();
   sonic.setEvents();
@@ -30,12 +33,16 @@ function game() {
       k.play("destroy", { volume: 0.1 });
       k.play("hyper-ring", { volume: 0.1 });
       k.destroy(enemy);
-      sonic.play("jump");
       sonic.jump();
       return;
     }
     k.play("hurt", { volume: 0.3 });
     k.go("game-over");
+  });
+  sonic.onCollide("ring", (ring) => {
+    k.play("ring", { volume: 0.1 });
+    k.destroy(ring);
+    score++;
   });
 
   let gameSpeed = 300;
