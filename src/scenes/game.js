@@ -23,7 +23,17 @@ function game() {
   ];
 
   let score = 0;
-  let scoreMultiplier = 0;
+  let scoreMultiplier = 1;
+
+  const scoreText = k.add([
+    k.text("SCORE: 0", { font: "mania", size: 52 }),
+    k.pos(20, 20),
+  ]);
+
+  const multiText = k.add([
+    k.text("BONUS: none", { font: "mania", size: 38 }),
+    k.pos(20, 80),
+  ]);
 
   const sonic = makeSonic(k.vec2(200, 745));
   sonic.setControls();
@@ -34,6 +44,12 @@ function game() {
       k.play("hyper-ring", { volume: 0.1 });
       k.destroy(enemy);
       sonic.jump();
+      scoreMultiplier++;
+      multiText.text = `BONUS: x${scoreMultiplier}`;
+      sonic.scoreUI.text = `x${scoreMultiplier}`;
+      k.wait(0.65, () => {
+        sonic.scoreUI.text = "";
+      });
       return;
     }
     k.play("hurt", { volume: 0.3 });
@@ -42,7 +58,12 @@ function game() {
   sonic.onCollide("ring", (ring) => {
     k.play("ring", { volume: 0.1 });
     k.destroy(ring);
-    score++;
+    score += 15 * scoreMultiplier;
+    scoreText.text = `SCORE: ${score}`;
+    sonic.scoreUI.text = `+${15 * scoreMultiplier}`;
+    k.wait(0.65, () => {
+      sonic.scoreUI.text = "";
+    });
   });
 
   let gameSpeed = 300;

@@ -29,7 +29,7 @@ function mainMenu() {
   ]);
 
   k.add([
-    k.text("by Alex Schubert.", {
+    k.text("by Alex Schubert", {
       font: "mania",
       size: 30,
     }),
