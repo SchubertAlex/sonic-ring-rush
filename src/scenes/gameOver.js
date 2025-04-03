@@ -33,7 +33,7 @@ function gameOver(citySFX) {
     k.add([
       k.text("Press space / click / tap to play again!", {
         font: "mania",
-        size: 64,
+        size: 52,
       }),
       k.anchor("center"),
       k.pos(k.center().x, k.center().y + 150),

@@ -23,7 +23,7 @@ function mainMenu() {
   ];
 
   k.add([
-    k.text("SONIC INFINITE RUNNER", { font: "mania", size: 96 }),
+    k.text("SONIC RING RUSH", { font: "mania", size: 96 }),
     k.pos(k.center().x, 200),
     k.anchor("center"),
   ]);
@@ -34,8 +34,18 @@ function mainMenu() {
       size: 30,
     }),
     k.anchor("center"),
-    k.pos(k.center().x, k.center().y - 285),
+    k.pos(k.center().x + 9, k.center().y - 280),
   ]);
+  k.wait(1.5, () => {
+    k.add([
+      k.text("Press space / click / tap to play!", {
+        font: "mania",
+        size: 42,
+      }),
+      k.anchor("center"),
+      k.pos(k.center().x, k.center().y - 175),
+    ]);
+  });
 
   makeSonic(k.vec2(200, 745));
 
