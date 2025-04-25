@@ -5,7 +5,7 @@ import makeRing from "../entities/ring";
 
 function game() {
   k.setGravity(3100);
-  const citySFX = k.play("city", { volume: 0.035, loop: true });
+  const citySFX = k.play("city", { volume: 0.1, loop: true });
 
   const bgPieceWidth = 1920;
   const bgPieces = [
@@ -42,8 +42,8 @@ function game() {
   sonic.setEvents();
   sonic.onCollide("enemy", (enemy) => {
     if (!sonic.isGrounded()) {
-      k.play("destroy", { volume: 0.1 });
-      k.play("hyper-ring", { volume: 0.1 });
+      k.play("destroy", { volume: 0.3 });
+      k.play("hyper-ring", { volume: 0.3 });
       k.destroy(enemy);
       sonic.jump();
       scoreMultiplier++;
@@ -59,7 +59,7 @@ function game() {
     k.go("game-over", citySFX);
   });
   sonic.onCollide("ring", (ring) => {
-    k.play("ring", { volume: 0.1 });
+    k.play("ring", { volume: 0.3 });
     k.destroy(ring);
     score += 15 * scoreMultiplier;
     scoreText.text = `SCORE: ${score}`;
